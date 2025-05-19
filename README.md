@@ -25,7 +25,7 @@ Marva is an AI-powered marketing platform designed to assist businesses with mar
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/dagemdworku/marva
+   git clone https://github.com/dagemdworku/marva.git
    cd marva
    ```
 
