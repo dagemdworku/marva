@@ -1,0 +1,13 @@
+{
+    "cSpell.words": [
+        "dotenv",
+        "htmlcov",
+        "langchain",
+        "nosetests",
+        "ollama",
+        "pycache",
+        "pypdf",
+        "Pytest",
+        "venv"
+    ]
+}

@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.egg-info/
+.eggs/
+
+# Virtual environment
+.venv/
+
+# Logs
+*.log
+
+# Byte-compiled / cache
+*.cache
+*.log
+*.pot
+
+# Pytest
+.pytest_cache/
+
+# Migrations
+*/migrations/__pycache__/
+*/migrations/*.pyc
+*/migrations/*.pyo
+*/migrations/*.log
+
+# Unit test / coverage
+htmlcov/
+coverage.xml
+*.cover
+*.py,cover
+.cache
+nosetests.xml
+test_*.py
+
+# System files
+.DS_Store
+Thumbs.db
