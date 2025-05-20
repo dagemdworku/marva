@@ -1,8 +1,11 @@
 {
     "cSpell.words": [
+        "csvfile",
         "dotenv",
         "htmlcov",
         "langchain",
+        "langgraph",
+        "llms",
         "nosetests",
         "ollama",
         "pycache",

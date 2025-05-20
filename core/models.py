@@ -32,9 +32,9 @@ class ChatConversation(models.Model):
         ("user", "User"),
         ("llm", "LLM"),  # Raw LLM access, fallback mode
         ("strategist", "Marketing Strategist"),
-        ("material_creator", "Material Creator"),
         ("analyzer", "Social Media Analyzer"),
-        ("post_replier", "Post Replier"),
+        ("content_creator", "Content Creator"),
+        ("comment_replier", "Comment Replier"),
     ]
 
     id = models.AutoField(primary_key=True)

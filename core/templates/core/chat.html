@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Marva AI Chat</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 2em;
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+        }
+
+        .chat-box {
+            background: #f4f4f4;
+            padding: 1em;
+            border-radius: 8px;
+            margin-top: 1em;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Chat with Marva about marketing regarding "The Comfort Alchemists"</h1>
+    <form method="post">
+        {% csrf_token %}
+        <select name="agent">
+            {% for agent_detail in agent_details %}
+                <option value="{{ agent_detail.key }}" {% if agent == agent_detail.key  %}selected{% endif %}>{{ agent_detail.name }}</option>
+            {% endfor %}
+        </select>
+        <textarea name="prompt"
+            placeholder="Ask Marva a question about your marketing strategy...">{{ prompt }}</textarea><br>
+        <button type="submit">Send</button>
+    </form>
+
+    {% if response %}
+    <div class="chat-box">
+        <strong>Marva:</strong><br>
+        <pre>{{ response }}</pre>
+    </div>
+    {% endif %}
+</body>
+
+</html>
