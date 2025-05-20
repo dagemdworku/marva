@@ -30,7 +30,7 @@ class Migration(migrations.Migration):
                             ("strategist", "Marketing Strategist"),
                             ("material_creator", "Material Creator"),
                             ("analyzer", "Social Media Analyzer"),
-                            ("post_replier", "Post Replier"),
+                            ("comment_replier", "Comment Replier"),
                         ],
                         max_length=16,
                     ),
@@ -42,7 +42,8 @@ class Migration(migrations.Migration):
             fields=[
                 ("id", models.AutoField(primary_key=True, serialize=False)),
                 ("content", models.TextField()),
-                ("created_at", models.DateTimeField(default=django.utils.timezone.now)),
+                ("created_at", models.DateTimeField(
+                    default=django.utils.timezone.now)),
                 ("views_count", models.PositiveIntegerField(default=0)),
                 ("shared_count", models.PositiveIntegerField(default=0)),
             ],
@@ -53,7 +54,8 @@ class Migration(migrations.Migration):
                 ("id", models.AutoField(primary_key=True, serialize=False)),
                 ("comment", models.TextField()),
                 ("creator_id", models.CharField(max_length=255)),
-                ("created_at", models.DateTimeField(default=django.utils.timezone.now)),
+                ("created_at", models.DateTimeField(
+                    default=django.utils.timezone.now)),
                 (
                     "parent_comment",
                     models.ForeignKey(

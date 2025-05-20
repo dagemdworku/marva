@@ -54,25 +54,29 @@ Marva is an AI-powered marketing platform designed to assist businesses with mar
 
 5. **Run database migrations**
 
-   Create a .env file in the root directory and add your OpenAI API key if available:
-
    ```bash
    python manage.py migrate
    ```
 
-   If no OpenAI API key is found, the system will default to using Ollama.
+6. **Insert Seed Data**
 
-6. **Run the development server**
+   The `seed_csv` management command populates the database with initial data from CSV files.
+
+   ```bash
+   python manage.py seed_csv
+   ```
+
+7. **Run the development server**
 
    ```bash
    python manage.py runserver
    ```
 
-7. **Access the application**
+8. **Access the application**
 
    Open your browser and navigate to http://127.0.0.1:8000
 
-8. **Access the admin panel**
+9. **Access the admin panel**
 
    Open your browser and navigate to http://127.0.0.1:8000/admin/
    and use the following super user login credentials:

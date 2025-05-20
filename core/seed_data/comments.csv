@@ -1,0 +1,41 @@
+id,creator_id,comment,created_at,post_id,parent_comment_id
+1,"homedesignlover","Absolutely love this aesthetic! Where is the coffee table from?",2025-05-01 11:00:00,1,
+2,"cozyvibesonly","That sofa looks incredibly inviting. Perfect for movie nights!",2025-05-02 00:00:00,1,
+3,"thecomfortalchemists","Thank you! The coffee table is part of our new "Artisan" collection. DM us for more details!",2025-05-03 06:00:00,1,1
+4,"dreamhomegoals","Beautifully styled!",2025-05-03 10:00:00,1,
+5,"woodlover","The joinery on that chair is stunning! True craftsmanship.",2025-05-02 12:35:00,2,
+6,"interiordesignerpro","Love the texture and the natural feel. Timeless design.",2025-05-02 13:00:00,2,
+7,"thecomfortalchemists","We're so glad you appreciate the detail! Our artisans pour their heart into every piece.",2025-05-03 06:10:00,2,5
+8,"sustainableliving","Is the wood sustainably sourced?",2025-05-05 10:00:00,2,
+9,"dream_interiors","Such a serene and inviting bedroom. Love the color palette.",2025-05-03 15:35:00,3,
+10,"sleepygirl","That bed looks so comfortable! What are the dimensions?",2025-05-04 13:00:00,3,
+11,"thecomfortalchemists","It's our "Cloud Nine" king-size bed. You can find the dimensions on our website (link in bio!).",2025-05-04 14:10:00,3,10
+12,"relaxandrecharge","Exactly what my bedroom needs!",2025-05-05 10:00:00,3,
+13,"workfromhomelife","Finally, an office chair that looks good and is comfortable!",2025-05-04 12:33:00,4,
+14,"organizedhome","Love how clean and functional this setup is.",2025-05-04 13:12:00,4,
+15,"busymomworking","Need this in my life!",2025-05-05 10:56:00,4,
+16,"thecomfortalchemists","We believe your workspace should be both productive and enjoyable! This is our "Evolve" ergonomic chair.",2025-05-05 14:45:00,4,13
+17,"bookwormlife","This looks like the perfect spot to curl up with a good book!",2025-05-05 12:30:00,5,
+18,"thecomfortalchemists",We agree! Our "Snuggle" armchair is a customer favorite for creating cozy corners.",2025-05-05 14:34:00,5,17
+19,"homelibrarydreams","Absolutely dreamy! Love the lamp too.",2025-05-06 06:14:00,5,
+20,"quietmoments","Need this in my life!",2025-05-07 09:48:00,5,
+21,"entertainingathome","Perfect for hosting dinner parties! How many chairs does it come with?",2025-05-06 11:17:00,6,
+22,"thecomfortalchemists","This set comfortably seats six, and we have options for extensions! DM us for more info.",2025-05-06 13:08:00,6,21
+23,"foodloverforever","Love the clean lines of this dining set!",2025-05-07 17:48:00,6,
+24,"stylishdining","So chic!",2025-05-08 10:09:00,6,
+25,"homedecoraddict","These would look perfect on my sofa!",2025-05-07 16:31:00,7,
+26,"textilelover","Such beautiful colors and textures!",2025-05-08 04:36:00,7,
+27,"thecomfortalchemists","They're a great way to add personality to any room!",2025-05-08 06:32:00,7,26
+28,"mixandmatchstyle","Love the variety!",2025-05-09 07:14:00,7,
+29,"amazingmakeover","Wow, what a difference! Love the new look.",2025-05-08 16:46:00,8,
+30,"inspiredbydesign","This is incredible! How can I get a consultation?",2025-05-08 23:41:00,8,
+31,"thecomfortalchemists","We're so glad you like it! You can book a free consultation through the link in our bio.",2025-05-09 04:29:00,8,30
+32,"renovationgoals","This gives me so much inspiration!",2025-05-10 11:48:00,8,
+33,"respectthecraft","It's wonderful to see the dedication that goes into your pieces.",2025-05-09 23:43:00,9,
+34,"supportlocalbusiness","Love supporting businesses that value craftsmanship!",2025-05-10 11:18:00,9,
+35,"thecomfortalchemists","We are so proud of our team! Their expertise is what makes our furniture special.",2025-05-10 20:28:00,9,
+36,"howitsmade","Fascinating to see the process!",2025-05-11 09:49:00,9,
+37,"smallspacestyle","Perfect for my apartment! Love the simplicity.",2025-05-10 10:52:00,10,
+38,"thecomfortalchemists",It's versatile and adds a touch of elegance to any space!",2025-05-11 15:43:00,10,37
+39,"decorinspiration","Such a cute little table!",2025-05-11 23:26:00,10,
+40,"shopnow","Definitely checking out your website!",2025-05-12 08:46:00,10,
