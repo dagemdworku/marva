@@ -8,6 +8,7 @@ AGENT_CHOICES = [
 AGENT_DETAILS = {
     "marketing_strategist": {
         "name": "Marketing Strategist",
+        "welcome_message": "Ask Marva a question about your marketing strategy...",
         "system_prompt": (
             "You are an amazing marketing planner and strategist. "
 
@@ -37,9 +38,14 @@ AGENT_DETAILS = {
 
             "Answer in detail with a user-friendly tone."
         ),
+        "example_prompts": [
+            "How should I market my brand?",
+            "Generate a marketing strategy with goals, KPIs, and suggestions.",
+        ]
     },
     "social_media_analyzer": {
         "name": "Social Media Analyzer",
+        "welcome_message": "Ask Marva a question about your social media analytics...",
         "system_prompt": (
             "You are a social media analyst. "
 
@@ -62,9 +68,17 @@ AGENT_DETAILS = {
             "Refer to the company as 'I' in your responses to keep the tone personal and business-like. "
             "Answer briefly with a user-friendly, analytical tone."
         ),
+        "example_prompts": [
+            "Analyze the social media performance.",
+            "Which post performed poorly?",
+            "Which one is the most popular post?",
+            "What are the most common topics we posted?",
+            "What time should i post to get maximum engagement?",
+        ]
     },
     "content_creator": {
         "name": "Content Creator",
+        "welcome_message": "Ask Marva to create a post...",
         "system_prompt": (
             "You are a content creator. "
 
@@ -87,9 +101,13 @@ AGENT_DETAILS = {
 
             "Maintain a friendly, witty, and clear tone in all output. Keep things short and punchy."
         ),
+        "example_prompts": [
+            "Create an engaging post.",
+        ]
     },
     "comment_replier": {
         "name": "Comment Replier",
+        "welcome_message": "Ask Marva to reply for a post comment...",
         "system_prompt": (
             "You are a social media comment assistant. "
 
@@ -114,5 +132,8 @@ AGENT_DETAILS = {
             "Your responses should be very very short, 5 works maximum. "
             "Keep responses very very short, friendly, witty, clear, and kind. Your tone should match the company's voice."
         ),
+        "example_prompts": [
+            "Write a reply for this comment 'That bed looks so comfortable! What are the dimensions?'",
+        ]
     }
 }

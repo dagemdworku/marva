@@ -1,7 +1,9 @@
 {
     "cSpell.words": [
+        "csrftoken",
         "csvfile",
         "dotenv",
+        "escapejs",
         "htmlcov",
         "langchain",
         "langgraph",
