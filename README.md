@@ -55,23 +55,17 @@ Marva is an AI-powered marketing platform designed to assist businesses with mar
 
    If no OpenAI API key is found, the system will default to using Ollama.
 
-5. **Run database migrations (no need for running the project as is)**
-
-   ```bash
-   python manage.py migrate
-   ```
-
-6. **Run the development server**
+5. **Run the development server**
 
    ```bash
    python manage.py runserver
    ```
 
-7. **Access the application**
+6. **Access the application**
 
    Open your browser and navigate to http://127.0.0.1:8000
 
-8. **Access the admin panel**
+7. **Access the admin panel**
 
    Open your browser and navigate to http://127.0.0.1:8000/admin/
    and use the following super user login credentials:
@@ -107,13 +101,19 @@ Marva is an AI-powered marketing platform designed to assist businesses with mar
     └── .env                    # Environment variables
 ```
 
-## Developing
+## Development
 
 - **Run Tailwind CSS CLI**
 
   ```bash
   npx @tailwindcss/cli -i input.css -o static/css/output.css --watch
   cd marva
+  ```
+
+- **Run database migrations**
+
+  ```bash
+  python manage.py migrate
   ```
 
 - **Insert Seed Data**
