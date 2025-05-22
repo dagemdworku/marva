@@ -137,6 +137,10 @@
     animation: gradient 8s linear infinite;
 }
 
+.quarter-opacity {
+    opacity: 0.25;
+}
+
 .markdown * {
     list-style: revert;
     padding: revert;

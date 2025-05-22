@@ -1,3 +1,14 @@
+function execute_sample_prompt(prompt) {
+  const textarea = document.getElementById("chatbot-textarea");
+  if (textarea) {
+    textarea.value = prompt;
+  }
+
+  const form = document.getElementById("chat-form");
+  const event = new Event("submit", { bubbles: true });
+  form.dispatchEvent(event);
+}
+
 function update_welcome_message_and_example_prompts(
   welcome_message,
   example_prompts
@@ -12,8 +23,9 @@ function update_welcome_message_and_example_prompts(
 
   example_prompts.forEach((prompt) => {
     const card = document.createElement("div");
+    card.onclick = () => execute_sample_prompt(prompt);
     card.className =
-      "flex flex-col items-end justify-between flex-none h-32 px-4 py-3 rounded-lg bg-zinc-100 w-72";
+      "flex flex-col items-end justify-between flex-none px-4 py-3 rounded-lg cursor-pointer bg-zinc-100 w-72";
     card.innerHTML = `
       <p class="text-base text-zinc-800 w-full">${prompt}</p>
       <svg
@@ -26,7 +38,7 @@ function update_welcome_message_and_example_prompts(
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"
-        class="text-zinc-500 h-5 w-5"
+        class="text-zinc-500 h-5 w-5 mt-2"
       >
         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
         <path d="M17 7l-10 10" />
@@ -37,53 +49,12 @@ function update_welcome_message_and_example_prompts(
   });
 }
 
+let is_query_running = false;
 function set_button_busy_state(is_busy) {
-  const default_content = `
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="2"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="!h-5 !w-5"
-    >
-      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-      <path d="M12 5l0 14" />
-      <path d="M18 11l-6 -6" />
-      <path d="M6 11l6 -6" />
-    </svg>
-  `;
+  is_query_running = is_busy;
 
-  const busy_content = `
-    <svg
-      viewBox="0 0 64 64"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      class="!h-5 !w-5 animate-spin"
-    >
-      <path
-        d="M32 3C35.8083 3 39.5794 3.75011 43.0978 5.20749C46.6163 6.66488 49.8132 8.80101 52.5061 11.4939C55.199 14.1868 57.3351 17.3837 58.7925 20.9022C60.2499 24.4206 61 28.1917 61 32C61 35.8083 60.2499 39.5794 58.7925 43.0978C57.3351 46.6163 55.199 49.8132 52.5061 52.5061C49.8132 55.199 46.6163 57.3351 43.0978 58.7925C39.5794 60.2499 35.8083 61 32 61C28.1917 61 24.4206 60.2499 20.9022 58.7925C17.3837 57.3351 14.1868 55.199 11.4939 52.5061C8.801 49.8132 6.66487 46.6163 5.20749 43.0978C3.7501 39.5794 3 35.8083 3 32C3 28.1917 3.75011 24.4206 5.2075 20.9022C6.66489 17.3837 8.80101 14.1868 11.4939 11.4939C14.1868 8.80099 17.3838 6.66487 20.9022 5.20749C24.4206 3.7501 28.1917 3 32 3L32 3Z"
-        stroke="currentColor"
-        stroke-width="5.2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-      ></path>
-      <path
-        d="M32 3C36.5778 3 41.0906 4.08374 45.1692 6.16256C49.2477 8.24138 52.7762 11.2562 55.466 14.9605C58.1558 18.6647 59.9304 22.9531 60.6448 27.4748C61.3591 31.9965 60.9928 36.6232 59.5759 40.9762"
-        stroke="currentColor"
-        stroke-width="5.2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        class="text-zinc-600"
-      ></path>
-    </svg>
-  `;
+  const default_content = get_send_icon(5);
+  const busy_content = get_busy_icon(5);
 
   const button = document.getElementById("send-button");
 
@@ -111,67 +82,136 @@ function getCookie(name) {
   return cookieValue;
 }
 
-function update_user_prompt(user_prompt) {
-  const prompt_area = document.getElementById("user-prompt");
-  const dialog_title = document.getElementById("dialog-title");
+function format_tool_name(tool_name) {
+  const formatted_tool_name = tool_name.replace(/_/g, " ");
+  return formatted_tool_name.replace(/\b\w/g, (char) => char.toUpperCase());
+}
 
-  prompt_area.innerHTML = `
-        <p class="mt-5 mb-2 text-4xl font-normal text-zinc-800">
-            ${user_prompt}
+function update_user_prompt(prompt) {
+  const user_prompt = document.getElementById("user-prompt");
+
+  user_prompt.innerHTML = `
+        <p class="text-4xl font-normal text-zinc-800">
+            ${prompt}
         </p>
     `;
+}
 
-  dialog_title.textContent = "Finished with your request!";
+function update_tool_calls(tool_calls) {
+  const tools_used = document.getElementById("tools-used");
+
+  tool_calls.forEach((tool_call) => {
+    const tool_call_div = document.createElement("div");
+    tool_call_div.className =
+      "inline-flex items-center px-3 py-1 text-sm font-semibold transition-colors border rounded-full focus:outline-hidden focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground shrink-0";
+
+    tool_call_div.innerHTML = `
+        <span
+          id="${tool_call.name}_status"
+          class="text-black" style="width: 1rem; height: 1rem; margin-right: 0.5rem;"
+        >
+          ${get_busy_icon(0)}
+        </span>
+        ${format_tool_name(tool_call.name)}
+    `;
+
+    tools_used.appendChild(tool_call_div);
+  });
+}
+
+function update_tool_status(tool_response) {
+  const tool_id = tool_response.tool_name + "_status";
+  const tool_status = document.getElementById(tool_id);
+
+  if (tool_status) {
+    tool_status.innerHTML = get_done_icon(0);
+  }
 }
 
 function update_ai_response(ai_response) {
   const response_area = document.getElementById("ai-response");
+  const skeleton = document.getElementById("ai-response-skeleton");
 
+  skeleton.style.display = "none";
   response_area.innerHTML = marked.parse(ai_response);
 }
 
-function clear_user_prompt() {
+function reset_dialog() {
   const prompt_area = document.getElementById("user-prompt");
-  const dialog_title = document.getElementById("dialog-title");
+  const tools_used = document.getElementById("tools-used");
+  const ai_response = document.getElementById("ai-response");
+  const skeleton = document.getElementById("ai-response-skeleton");
 
   prompt_area.innerHTML = "";
-  dialog_title.textContent = "On it boss...";
+  tools_used.innerHTML = "";
+  ai_response.innerHTML = "";
+  skeleton.style.display = "block";
 }
 
-function clear_ai_response() {
-  const response_area = document.getElementById("ai-response");
+function initiate_socket_connection() {
+  return new Promise((resolve, reject) => {
+    const socket = new WebSocket("ws://" + window.location.host + "/ws/chat/");
 
-  response_area.innerHTML = "";
-}
+    socket.onmessage = function (e) {
+      const data = JSON.parse(e.data);
 
-function openDialog() {}
+      switch (data.step) {
+        case "user_prompt":
+          update_user_prompt(data.data.content);
+          break;
+        case "tool_calls":
+          update_tool_calls(data.data.tool_calls);
+          break;
+        case "tool_response":
+          update_tool_status(data.data);
+          break;
+        case "agent_response":
+          update_ai_response(data.data.content);
+          break;
+        case "final_response":
+          set_button_busy_state(false);
+          socket.close();
+          break;
+      }
+    };
 
-document.getElementById("chat-form").addEventListener("submit", function (e) {
-  e.preventDefault();
+    socket.onopen = function () {
+      resolve(socket);
+    };
 
-  set_button_busy_state(true);
-
-  clear_user_prompt();
-  clear_ai_response();
-
-  window.dispatchEvent(new CustomEvent("show-dialog"));
-
-  const form = e.target;
-  const data = new FormData(form);
-
-  fetch("", {
-    method: "POST",
-    headers: {
-      "X-Requested-With": "XMLHttpRequest",
-      "X-CSRFToken": getCookie("csrftoken"),
-    },
-    body: data,
-  })
-    .then((response) => response.json())
-    .then((data) => {
+    socket.onerror = function (e) {
+      console.error("WebSocket error:", e);
       set_button_busy_state(false);
+      reject(e);
+    };
+  });
+}
 
-      update_user_prompt(data.prompt);
-      update_ai_response(data.response);
-    });
-});
+document
+  .getElementById("chat-form")
+  .addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    if (is_query_running) return;
+
+    set_button_busy_state(true);
+    reset_dialog();
+
+    window.dispatchEvent(new CustomEvent("show-dialog"));
+
+    const form = e.target;
+    const data = new FormData(form);
+
+    try {
+      const socket = await initiate_socket_connection();
+
+      socket.send(
+        JSON.stringify({
+          prompt: data.get("prompt"),
+          agent: data.get("agent"),
+        })
+      );
+    } catch (err) {
+      set_button_busy_state(false);
+    }
+  });

@@ -17,34 +17,6 @@ def chat_view(request):
     user_prompt = ""
     agent_key = "marketing_strategist"
 
-    if request.method == "POST":
-        user_prompt = request.POST.get("prompt", "")
-        agent_key = request.POST.get("agent", "")
-
-        print(f"User prompt: {user_prompt}")
-        print(f"Agent key: {agent_key}")
-
-        agent_map = {
-            "content_creator": ContentCreatorAgent,
-            "comment_replier": CommentReplierAgent,
-            "marketing_strategist": MarketingStrategistAgent,
-            "social_media_analyzer": SocialMediaAnalyzerAgent,
-        }
-
-        agent_cls = agent_map.get(agent_key)
-        if not agent_cls:
-            raise ValueError("Invalid agent selected")
-
-        agent = agent_cls()
-        response = agent.execute(user_prompt=user_prompt)
-
-        if request.headers.get("x-requested-with") == "XMLHttpRequest":
-            return JsonResponse({
-                "response": response,
-                "prompt": user_prompt,
-                "agent": agent_key,
-            })
-
     return render(
         request,
         "core/chat.html", {

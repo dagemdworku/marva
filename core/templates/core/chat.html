@@ -104,21 +104,40 @@
     </div>
 
     <c-dialog prevent-close="true">
-      <c-dialog.content>
-        <c-dialog.header>
-          <c-dialog.title>
-            <p id="dialog-title">On it boss...</p>
-          </c-dialog.title>
-        </c-dialog.header>
-        <div class="max-h-[80vh] flex">
-          <div class="overflow-y-auto">
-            <div id="user-prompt"></div>
-            <div id="ai-response" class="mt-4 markdown"></div>
+      <c-dialog.content
+        class="overflow-hidden xl:max-w-[calc(80rem-2rem)] max-w-[calc(100vw-2rem)]"
+      >
+        <div
+          class="flex flex-col h-full max-h-[calc(100vh-5rem)] xl:max-w-[calc(80rem-5rem)] max-w-[calc(100vw-5rem)]"
+        >
+          <c-dialog.header class="flex-none">
+            <c-dialog.title class="flex flex-col space-y-5">
+              <div id="user-prompt" class="pr-6"></div>
+              <div
+                id="tools-used"
+                class="flex pb-4 space-x-2 overflow-x-auto"
+              ></div>
+            </c-dialog.title>
+          </c-dialog.header>
+          <div class="flex w-full min-h-0 grow">
+            <div class="w-full overflow-y-auto">
+              <div id="ai-response-skeleton" class="w-full">
+                <div class="flex space-x-4 animate-pulse">
+                  <div class="flex-1 py-1 space-y-3">
+                    <div class="h-5 bg-gray-200 rounded"></div>
+                    <div class="h-5 w-[93%] bg-gray-200 rounded mt-2"></div>
+                    <div class="h-5 w-[95%] bg-gray-200 rounded mt-2"></div>
+                  </div>
+                </div>
+              </div>
+              <div id="ai-response" class="markdown"></div>
+            </div>
           </div>
         </div>
       </c-dialog.content>
     </c-dialog>
 
+    <script src="{% static 'js/assets.js' %}"></script>
     <script src="{% static 'js/app.js' %}"></script>
     <script>
       function update_agent_helpers(agent) {
