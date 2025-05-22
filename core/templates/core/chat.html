@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Marva AI Chat</title>
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/fonts.css' %}" />
@@ -17,7 +19,9 @@
         <div class="flex-grow px-4 py-6 overflow-y-auto">
           <div class="min-h-[30%] flex items-center">
             <div class="flex flex-col items-center w-full">
-              <h1 class="py-4 text-5xl font-normal text-center leading-15">
+              <h1
+                class="py-4 text-3xl font-normal text-center md:text-5xl md:leading-15"
+              >
                 Hello, I'm
                 <span
                   class="font-bold bg-clip-text text-transparent bg-[linear-gradient(to_right,theme(colors.purple.800),theme(colors.fuchsia.500),theme(colors.purple.800))] bg-[length:200%_auto] animate-gradient"
@@ -45,7 +49,7 @@
               style="resize: none"
               placeholder="✧˖°."
             />
-            <div class="flex items-center justify-between">
+            <div class="flex items-center justify-between space-x-4">
               <c-select
                 class="w-60"
                 value="{{ agent }}"
@@ -112,7 +116,7 @@
         >
           <c-dialog.header class="flex-none">
             <c-dialog.title class="flex flex-col space-y-5">
-              <div id="user-prompt" class="pr-6"></div>
+              <div id="user-prompt" class="pr-6 text-left"></div>
               <div
                 id="tools-used"
                 class="flex pb-4 space-x-2 overflow-x-auto"
