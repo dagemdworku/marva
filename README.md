@@ -2,11 +2,14 @@
 
 Marva is an AI-powered marketing platform designed to assist businesses with marketing strategy, content creation, and social media management. It leverages advanced AI agents integrated via LangChain and Ollama to automate and optimize marketing workflows.
 
+![Marva AI Screenshot](images/marva-screenshot.png "Marva AI Screenshot")
+
 ## Features
 
 - **Marketing Strategist Agent**: Analyzes company bio and post analytics to create targeted marketing strategies.
 - **Marketing Material Creator Agent**: Reads company materials and existing posts/comments to generate new marketing content.
-- **Social Media Analyzer & Post Replier Agent**: Summarizes social media data, provides insights, and automatically generates replies to posts and comments.
+- **Social Media Analyzer & Post Replier Agent**: Summarizes social media data and provides insights.
+- **Post Replier Agent**: Generates replies to posts and comments.
 - **Lightweight Local Database**: Uses SQLite for storing posts, comments, and chat conversations.
 - **Interactive Chat Interface**: Communicate with AI agents to receive insights, strategies, and content suggestions.
 - **Admin Dashboard**: Built-in Django admin to view and manage database content effortlessly.
@@ -42,7 +45,7 @@ Marva is an AI-powered marketing platform designed to assist businesses with mar
    pip install -r requirements.txt
    ```
 
-4. **Configure environment variables**
+4. **Configure environment variables (optional)**
 
    Create a .env file in the root directory and add your OpenAI API key if available:
 
@@ -52,31 +55,17 @@ Marva is an AI-powered marketing platform designed to assist businesses with mar
 
    If no OpenAI API key is found, the system will default to using Ollama.
 
-5. **Run database migrations**
-
-   ```bash
-   python manage.py migrate
-   ```
-
-6. **Insert Seed Data**
-
-   The `seed_csv` management command populates the database with initial data from CSV files.
-
-   ```bash
-   python manage.py seed_csv
-   ```
-
-7. **Run the development server**
+5. **Run the development server**
 
    ```bash
    python manage.py runserver
    ```
 
-8. **Access the application**
+6. **Access the application**
 
    Open your browser and navigate to http://127.0.0.1:8000
 
-9. **Access the admin panel**
+7. **Access the admin panel**
 
    Open your browser and navigate to http://127.0.0.1:8000/admin/
    and use the following super user login credentials:
@@ -94,16 +83,46 @@ Marva is an AI-powered marketing platform designed to assist businesses with mar
 
 ```bash
    marva/
-    ├── .venv/                  # Python virtual environment
-    ├── .vscode/                # Editor settings and workspace configuration for Visual Studio Code
+    ├── .venv/                  # Python virtual environment (not committed to git)
+    ├── .vscode/                # VS Code editor settings and workspace configuration
     ├── core/                   # Main Django app with models, views, and AI agents
+    ├── node_module/            # Node.js dependencies for frontend tooling
     ├── marva/                  # Django project settings
+    ├── static/                 # Static files (CSS, JS, images)
     ├── manage.py               # Django project management script
     ├── requirements.txt        # Project dependencies
+    ├── company_bio.pdf         # Example company bio PDF for AI agents
+    ├── db.sqlite3              # SQLite database file
+    ├── input.css               # Source CSS for Tailwind
+    ├── package.json            # Node.js project metadata and scripts
+    ├── tailwind.config.js      # Tailwind CSS configuration (added for VS Code extension to work)
     ├── README.md               # Project documentation
-    ├── .gitignore              # Specifies files and directories to be ignored by Git version control
+    ├── .gitignore              # Git ignore rules
     └── .env                    # Environment variables
 ```
+
+## Development
+
+- **Run Tailwind CSS CLI**
+
+  ```bash
+  npx @tailwindcss/cli -i input.css -o static/css/output.css --watch
+  cd marva
+  ```
+
+- **Run database migrations**
+
+  ```bash
+  python manage.py migrate
+  ```
+
+- **Insert Seed Data**
+
+  The `seed_csv` management command populates the database with initial data from CSV files.
+
+  ```bash
+  python manage.py seed_csv
+  ```
 
 ## Testing
 

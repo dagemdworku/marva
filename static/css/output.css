@@ -988,6 +988,9 @@
     -webkit-user-select: none;
     user-select: none;
   }
+  .running {
+    animation-play-state: running;
+  }
   .placeholder\:text-muted-foreground {
     &::placeholder {
       color: var(--muted-foreground);

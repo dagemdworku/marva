@@ -1,8 +1,12 @@
 {
     "cSpell.words": [
         "asgi",
+        "createsuperuser",
         "csrftoken",
         "csvfile",
+        "Dagem",
+        "dagemdworku",
+        "Dagi",
         "dotenv",
         "escapejs",
         "htmlcov",
@@ -16,6 +20,7 @@
         "Pytest",
         "rabbitmq",
         "runserver",
-        "venv"
+        "venv",
+        "Worku"
     ]
 }
