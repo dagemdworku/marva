@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
+        "asgi",
         "csrftoken",
         "csvfile",
         "dotenv",
@@ -13,6 +14,8 @@
         "pycache",
         "pypdf",
         "Pytest",
+        "rabbitmq",
+        "runserver",
         "venv"
     ]
 }

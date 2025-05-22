@@ -103,6 +103,7 @@ AGENT_DETAILS = {
         ),
         "example_prompts": [
             "Create an engaging post.",
+            "Check the other posts engagement then create an engaging post based on the company information.",
         ]
     },
     "comment_replier": {

@@ -9,3 +9,6 @@ pypdf==5.5.0
 pandas==2.2.2
 python-dotenv==1.0.1
 django-cotton==2.1.2
+channels==4.2.2
+channels_rabbitmq==4.0.1
+daphne==4.2.0

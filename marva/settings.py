@@ -31,14 +31,16 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    "daphne",
+    'channels',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    "core",
     'django_cotton',
+    "core",
 ]
 
 MIDDLEWARE = [
@@ -69,7 +71,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "marva.wsgi.application"
-
+ASGI_APPLICATION = "marva.asgi.application"
 
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
@@ -79,6 +81,24 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
     }
+}
+
+# CHANNEL_LAYERS = {
+#     "default": {
+#         "BACKEND": "channels_rabbitmq.core.RabbitmqChannelLayer",
+#         "CONFIG": {
+#             "host": "amqp://guest:guest@localhost:5672/",
+#         },
+#     },
+# }
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels_rabbitmq.core.RabbitmqChannelLayer",
+        "CONFIG": {
+            "host": "amqp://guest:guest@127.0.0.1/asgi",
+        },
+    },
 }
 
 STATICFILES_DIRS = [
@@ -121,7 +141,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = "static/"
-print(f"---->  {STATIC_URL}")
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
